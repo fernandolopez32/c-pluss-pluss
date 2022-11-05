@@ -1,0 +1,58 @@
+#include <vector>
+#include <algorithm>
+#include <string>
+#define OLC_PGE_APPLICATION
+#include "../olcPixelGameEngine.h"
+
+using namespace std;
+
+const float PI = 3.1415926f;
+
+struct GameObject{
+    float x,y;
+    float dx, dy; 
+    int size;
+    float angle;
+    bool active;
+};
+
+class AsteroidsGame : public olc:: PixelGameengine
+{
+private:
+    int level; 
+    int score; 
+    GameObject player; 
+    vertor<GameObject> asteroids;
+    vector<GameObject> bullets;
+    vector<pair<float, float>> playerModel;
+    vector<pari<float,float>> asteroidModel;
+    
+    void WrapCoordinates(float xi, float yi, float &xo, float&yo)
+    {
+        xo = xi;
+        yo = yi; 
+        if(xo < 0){
+            xo += ScreenWidth();
+        }
+        if (xo >= ScreenWidth()) {
+            xo -= ScreenWidth();
+        }
+        if (yo < 0) {
+            yo += ScreenHeight();
+        }
+        if (yo >= ScreenHeight()) {
+            yo -= ScreenHeight();
+        }
+    }
+public:
+    AsteroidsGame(/* args */);
+    ~AsteroidsGame();
+};
+
+AsteroidsGame::AsteroidsGame(/* args */)
+{
+}
+
+AsteroidsGame::~AsteroidsGame()
+{
+}
