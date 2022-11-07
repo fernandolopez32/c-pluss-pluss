@@ -14,15 +14,19 @@
                 "cwd": "${fileDirname}"
             },
             "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
-       {
-        "label": "run",
-        "type": "shell",
-        "command": "./$workspaceFolderBasename}",
-        "dependsOn":[
-            "build"
-        ],
-        "problemMatcher":[]
-       }
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "./$workspaceFolderBasename}",
+            "dependsOn": [
+                "build"
+            ],
+            "problemMatcher": []
+        }
     ]
 }

@@ -106,8 +106,6 @@ virtual bool OnUserUpdsate(float fElapsedTime) override
         }
     }
 
-    vector<GameObject> newAsteroids;
-
     
 
 }
