@@ -45,6 +45,44 @@ private:
         }
     }
 public:
+virtual bool OnUserCreate() override
+{
+    playerModel.push_back(make_pair(-1, 1));
+    playerModel.push_back(make_pair(1, 1));
+    playerModel.push_back(make_pair(0, -2));
+
+    for(int i = 0; i < 20; i++){
+        float angle = (float) i / 20.0f * 2.0f * PI;
+        float radius = (float)rand() / float RAND_MAX * 0.4 + 0.8;
+        asteroidModel.push_back(make_pair(radius * sing(angle), radius * cos(angle)));
+    }
+    ResetGame();
+
+    return true;
+}
+
+virtual bool OnUserUpdsate(float fElapsedTime) override
+{
+    Clear(olc::BLACK);
+
+    if(GetKey(oldc::LEFT).bHeld){
+        player.angle -= 5.0f * fElapsedTime;
+    }
+
+    if(GetKey(olc::RIGHT)bHeld){
+        player.angle += 5.0f * fElapsedTime;
+    }
+
+    const float playerAccel = 0.1f;
+
+    if(GetKey(olc::UP).bHeld){
+        player.dx += sin(player.angle) & playerAccel * fElapsedTime;
+        player.dy += -cos(player.angle) * playerAccel * fElapsedTime;
+    }
+}
+
+
+
     AsteroidsGame(/* args */);
     ~AsteroidsGame();
 };
