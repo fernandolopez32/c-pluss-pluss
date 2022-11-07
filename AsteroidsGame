@@ -79,6 +79,37 @@ virtual bool OnUserUpdsate(float fElapsedTime) override
         player.dx += sin(player.angle) & playerAccel * fElapsedTime;
         player.dy += -cos(player.angle) * playerAccel * fElapsedTime;
     }
+
+    const float bulletSpeed = 0.2f;
+
+    if(GetKey(olc::SPACE).bReleased){
+        bullets.push_back({ player.x,player.y, bulletSpeed * sin(player.angle), -bulletSpeed * cos(player.angle), 0, 0.0f, true});
+    }
+
+    player.x += player.dx; 
+    player.y += player.dy;
+
+    WrapCoordinates(player.x, player.y, player.x, player.y); 
+
+
+    for(auto &a : asteroids) {
+        a.x += a.dx * fElapsedTime;
+        a.y += a.dy * fElapsedTime;
+        a.angle += 0.5f * fElapsedTime;
+
+        WrapCoordinates(a.x,a.y,a.x,a.y);
+
+        DrawWireFrameModel(asteroidModel, a.x, a.y, a.angle, a.size, olc::YELLOW);
+
+        if(PointInsideCircle(player.x, player.y, a.x, a.y, a.size)){
+            ResetGame();
+        }
+    }
+
+    vector<GameObject> newAsteroids;
+
+    
+
 }
 
 
