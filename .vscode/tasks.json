@@ -3,7 +3,7 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "shell",
+            "label": "build",
             "command": "g++",
             "args": [
                 "main.cpp",
