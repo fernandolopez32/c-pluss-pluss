@@ -1,5 +1,5 @@
-#include <string>;
-#include <include/Dog.h>
+#include <string>
+#include "../include/Dog.h"
 
 int main(int argc, char const *argv[])
 {
@@ -7,12 +7,15 @@ int main(int argc, char const *argv[])
     // making a dog 
     Dog max;
     
-    //animal things
+    // calling member of the base class
     max.eat();
     max.sleep();
+    max.setColor("Red");
 
     //dog specific function 
     max.bark();
+    max.setType("Cannine");
+    max.displayInfo(max.getColor());
 
     return 0;
 }
